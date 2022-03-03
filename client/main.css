@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #dbfafa;
+    font-family: 'Readex pro';
+}
+
+
+section{
+    padding: 5rem;  
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    /*height: 650px;*/
+}
+
+h2 {
+    flex-basis: 100%;
+    text-align: center;
+    /*transform: translateY(170px);*/
+}
+
+.container{
+    display: flex;
+    gap: 2rem;
+}
+
+.test_type_button{
+    text-decoration: none;
+    background-color: #2565b9;
+    color: white;
+    border-style: solid;
+    border:rgb(162, 162, 162);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.test_type_button:hover{
+    background-color: white;
+    cursor: pointer;
+    color: #2565b9;
+    border-style: solid;
+    border:rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/*.gradient {
+    background: linear-gradient(90deg, rgba(255,23,228,1) 0%, rgba(134,251,251,1) 61%);
+    height: 2px;
+  }*/

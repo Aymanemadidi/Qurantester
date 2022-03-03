@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #dbfafa;
+    font-family: 'Noto Kufi Arabic';
+}
+
+.trans{
+    transform: translateY(20px);
+}
+
+#sura_select{
+    transform: translateY(40px);
+    width: 40%;
+    margin: auto;
+}
+
+#start-test{
+    transform: translateY(60px);
+    text-align: center;
+}
+
+
+
+.center{
+    transform: translateY(90px);
+    text-align: center;
+}
+
+.nav {
+    padding-top: 2rem;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    background-color: #2565b9;
+    color: white;
+    border-style: solid;
+    border:rgb(162, 162, 162);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-link:hover{
+    background-color: white;
+    cursor: pointer;
+    color: #2565b9;
+    border-style: solid;
+    border:rgb(0, 0, 0);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button#start-test2 {
+    margin: auto;
+    padding: 20px;
+    font-size: 18px;
+}
+
+.aya{
+    border: 1px solid rgb(218, 218, 218);
+    border-radius: 10px;
+    margin: 0 25px;
+    padding: 15px 40px;
+    margin-top: 10px;
+    color: rgb(52, 140, 8);
+    font-size: 25px;
+}
+
+.aya_num{
+    transform: translateY(90px);
+    text-align: center;
+    color: rgb(12, 62, 116);
+}
