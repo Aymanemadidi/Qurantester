@@ -27,6 +27,10 @@ app.get('/juz2', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/juz2.html'));
 });
 
+app.get('/tst_record', function(req, res) {
+    res.sendFile(path.join(__dirname + '/../client/tst_record.js'));
+});
+
 app.get('/api/sura/:id', (req, res)=>{
     const url = "https://api.alquran.cloud/v1/surah/" + req.params.id;
     fetch(url)
