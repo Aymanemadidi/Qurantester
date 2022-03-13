@@ -63,8 +63,8 @@ body {
 
 button#start-test2 {
     margin: auto;
-    padding: 20px;
-    font-size: 18px;
+    padding: 10px;
+    font-size: 15px;
 }
 
 .aya{
@@ -74,7 +74,7 @@ button#start-test2 {
     padding: 15px 40px;
     margin-top: 10px;
     color: rgb(52, 140, 8);
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .aya_num{
