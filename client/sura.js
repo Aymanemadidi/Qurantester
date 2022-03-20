@@ -17,6 +17,7 @@ var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
 
+let vector_of_json = [];
 recordButton.disabled = false;
 stopButton.disabled = true;
 pauseButton.disabled = true;
@@ -53,6 +54,25 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
+function generate_range_of_2_number(range){
+	
+	let start = Math.floor(Math.random() * (range));
+	let end = start + 20 >= range ? range - 1 : start + 20;
+	if (start == end)
+		start = 0;
+	console.log(start, end);
+	return [start, end];
+}
+
+function already_exist(value, vec){
+	for (let obj of vec) {
+		if (value == obj[0]){
+			return [true, obj[1]];
+		}
+	}
+	return [false,null];
+}
+
 select.addEventListener('change', (e)=>{
     e.preventDefault();
 
@@ -77,27 +97,58 @@ start_test_btn.addEventListener('click', (e)=>{
     first_aya.style.border = "none";
     last_aya.style.border = "none";
 
-    fetch("https://api.alquran.cloud/v1/surah/" + select_value)
-    .then((response) => response.json())
-    .then((json)=>{
-    
-    let num_ayas = json.data.numberOfAyahs;
-    let end_aya = getRandomInt(num_ayas);
-    while (end_aya < 9)
-        end_aya = getRandomInt(num_ayas);
-    let start_aya = getRandomInt(end_aya);
-    while (end_aya - start_aya < 8 || end_aya - start_aya > 20)
-        start_aya = getRandomInt(end_aya);
-    
-    label1.textContent = ":اقرأ من قوله تعالى"; 
-    label2.textContent = ":إلى";   
-    first_aya.style.border = "";
-    last_aya.style.border = "";
-    first_aya.textContent =  json.data.ayahs[start_aya].text;
-    last_aya.textContent = json.data.ayahs[end_aya].text;
-    sura_aya.textContent = "(" + json.data.name + "," + json.data.ayahs[start_aya].numberInSurah + ")";
-    sura_aya2.textContent = "(" + json.data.name + "," + json.data.ayahs[end_aya].numberInSurah + ")";
-    })
+	let vec = already_exist(select_value, vector_of_json);
+	if (vec[0]){
+		console.log("already exist")
+		let json = vec[1];
+		let num_ayas = json.data.numberOfAyahs;
+		let range = generate_range_of_2_number(num_ayas)
+		let start_aya = range[0]
+		let end_aya = range[1];
+	
+		label1.textContent = ":اقرأ من قوله تعالى"; 
+		label2.textContent = ":إلى";   
+		first_aya.style.border = "";
+		last_aya.style.border = "";
+		first_aya.textContent =  json.data.ayahs[start_aya].text;
+		last_aya.textContent = json.data.ayahs[end_aya].text;
+		sura_aya.textContent = "(" + json.data.name + "," + json.data.ayahs[start_aya].numberInSurah + ")";
+		sura_aya2.textContent = "(" + json.data.name + "," + json.data.ayahs[end_aya].numberInSurah + ")";
+	}
+	else{
+		fetch("https://api.alquran.cloud/v1/surah/" + select_value)
+		.then((response) => response.json())
+		.then((json)=>{
+		
+		// let num_ayas = json.data.numberOfAyahs;
+		// let end_aya = getRandomInt(num_ayas);
+		// console.log(end_aya)
+		// while (end_aya < 9){
+		//     end_aya = getRandomInt(num_ayas);
+		// 	console.log(end_aya)
+		// }
+		// let start_aya = getRandomInt(end_aya);
+		// while (end_aya - start_aya < 8 || end_aya - start_aya > 20)
+		//     start_aya = getRandomInt(end_aya);
+		let num_ayas = json.data.numberOfAyahs;
+		let range = generate_range_of_2_number(num_ayas)
+		let start_aya = range[0]
+		let end_aya = range[1];
+	
+		console.log(start_aya, end_aya);
+		label1.textContent = ":اقرأ من قوله تعالى"; 
+		label2.textContent = ":إلى";   
+		first_aya.style.border = "";
+		last_aya.style.border = "";
+		first_aya.textContent =  json.data.ayahs[start_aya].text;
+		last_aya.textContent = json.data.ayahs[end_aya].text;
+		sura_aya.textContent = "(" + json.data.name + "," + json.data.ayahs[start_aya].numberInSurah + ")";
+		sura_aya2.textContent = "(" + json.data.name + "," + json.data.ayahs[end_aya].numberInSurah + ")";
+		vector_of_json.push([select_value, {...json}]);
+		console.log(vector_of_json[0][1].data);
+		})
+	}
+	
 })
 
 
@@ -255,4 +306,5 @@ function createDownloadLink(blob) {
 	//add the li element to the ol
 	recordingsList.appendChild(li);
 }
+
 // ////////////////////////////
